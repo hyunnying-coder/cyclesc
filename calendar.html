@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -28,7 +29,6 @@ body{
   position:sticky;
   top:0;
   z-index:100;
-  box-shadow:0 2px 10px rgba(0,0,0,0.3);
 }
 
 .header h1{
@@ -45,20 +45,29 @@ body{
   font-weight:bold;
 }
 
+.month{
+  padding:20px;
+}
+
+.month-title{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
 .calendar{
-  padding:15px;
   display:grid;
   grid-template-columns:repeat(7,1fr);
-  gap:12px;
+  gap:10px;
 }
 
 .day{
   background:#1f2937;
-  border-radius:18px;
-  min-height:150px;
-  padding:12px;
-  transition:0.2s;
+  border-radius:16px;
+  min-height:120px;
+  padding:10px;
   box-shadow:0 4px 12px rgba(0,0,0,0.25);
+  transition:0.2s;
 }
 
 .day:hover{
@@ -68,7 +77,7 @@ body{
 .date{
   font-size:18px;
   font-weight:bold;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .sun{
@@ -85,30 +94,23 @@ body{
 
 .ride{
   background:#374151;
-  border-radius:12px;
-  padding:8px;
-  margin-bottom:8px;
-  font-size:13px;
-  line-height:1.4;
-  transition:0.2s;
-}
-
-.ride:hover{
-  background:#4b5563;
+  border-radius:10px;
+  padding:6px;
+  margin-bottom:6px;
+  font-size:12px;
 }
 
 .ride a{
   color:white;
   text-decoration:none;
-  display:block;
 }
 
 .level{
-  font-size:11px;
+  font-size:10px;
   display:inline-block;
-  padding:3px 7px;
+  padding:2px 6px;
   border-radius:999px;
-  margin-bottom:5px;
+  margin-bottom:4px;
   font-weight:bold;
 }
 
@@ -147,84 +149,158 @@ body{
 
 </div>
 
+<!-- 5월 -->
+<div class="month">
+
+<div class="month-title">5월</div>
+
 <div class="calendar">
 
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+
 <div class="day today">
-<div class="date">11</div>
+<div class="date">3</div>
 
 <div class="ride">
-<a href="https://cafe.naver.com/" target="_blank">
-
+<a href="#">
 <div class="level easy">초급</div>
-
-오이도 야라<br>
-AM 08:00
-
+오이도 야라
 </a>
 </div>
 
-<div class="ride">
-<a href="https://cafe.naver.com/" target="_blank">
+</div>
 
+<div class="day"><div class="date">4</div></div>
+<div class="day"><div class="date">5</div></div>
+<div class="day"><div class="date">6</div></div>
+<div class="day"><div class="date">7</div></div>
+<div class="day"><div class="date">8</div></div>
+<div class="day"><div class="date">9</div></div>
+<div class="day"><div class="date sat">10</div></div>
+<div class="day"><div class="date sun">11</div></div>
+<div class="day"><div class="date">12</div></div>
+<div class="day"><div class="date">13</div></div>
+<div class="day"><div class="date">14</div></div>
+<div class="day"><div class="date">15</div></div>
+<div class="day"><div class="date sat">16</div></div>
+<div class="day"><div class="date sun">17</div></div>
+<div class="day"><div class="date">18</div></div>
+<div class="day"><div class="date">19</div></div>
+<div class="day"><div class="date">20</div></div>
+<div class="day"><div class="date">21</div></div>
+<div class="day"><div class="date">22</div></div>
+<div class="day"><div class="date sat">23</div></div>
+<div class="day"><div class="date sun">24</div></div>
+<div class="day"><div class="date">25</div></div>
+<div class="day"><div class="date">26</div></div>
+<div class="day"><div class="date">27</div></div>
+<div class="day"><div class="date">28</div></div>
+<div class="day"><div class="date">29</div></div>
+<div class="day"><div class="date sat">30</div></div>
+<div class="day"><div class="date sun">31</div></div>
+
+</div>
+</div>
+
+<!-- 6월 -->
+<div class="month">
+<div class="month-title">6월</div>
+<div class="calendar">
+
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+<div class="day"><div class="date">3</div></div>
+<div class="day"><div class="date">4</div></div>
+<div class="day"><div class="date">5</div></div>
+<div class="day"><div class="date sat">6</div></div>
+<div class="day"><div class="date sun">7</div></div>
+
+<div class="day">
+<div class="date">8</div>
+
+<div class="ride">
+<a href="#">
 <div class="level mid">중급</div>
-
-시화방조제<br>
-PM 07:30
-
+시화방조제
 </a>
 </div>
 
 </div>
 
-<div class="day">
-<div class="date">12</div>
-
-<div class="ride">
-<a href="https://cafe.naver.com/" target="_blank">
-
-<div class="level hard">상급</div>
-
-남산 인터벌<br>
-PM 08:00
-
-</a>
-</div>
-
-</div>
-
-<div class="day">
-<div class="date sat">16</div>
-
-<div class="ride">
-<a href="https://cafe.naver.com/" target="_blank">
-
-<div class="level mid">중급</div>
-
-대부도 투어<br>
-AM 07:00
-
-</a>
-</div>
+<div class="day"><div class="date">9</div></div>
+<div class="day"><div class="date">10</div></div>
+<div class="day"><div class="date">11</div></div>
+<div class="day"><div class="date">12</div></div>
+<div class="day"><div class="date sat">13</div></div>
+<div class="day"><div class="date sun">14</div></div>
+<div class="day"><div class="date">15</div></div>
+<div class="day"><div class="date">16</div></div>
+<div class="day"><div class="date">17</div></div>
+<div class="day"><div class="date">18</div></div>
+<div class="day"><div class="date">19</div></div>
+<div class="day"><div class="date sat">20</div></div>
+<div class="day"><div class="date sun">21</div></div>
+<div class="day"><div class="date">22</div></div>
+<div class="day"><div class="date">23</div></div>
+<div class="day"><div class="date">24</div></div>
+<div class="day"><div class="date">25</div></div>
+<div class="day"><div class="date">26</div></div>
+<div class="day"><div class="date sat">27</div></div>
+<div class="day"><div class="date sun">28</div></div>
+<div class="day"><div class="date">29</div></div>
+<div class="day"><div class="date">30</div></div>
 
 </div>
-
-<div class="day">
-<div class="date sun">17</div>
-
-<div class="ride">
-<a href="https://cafe.naver.com/" target="_blank">
-
-<div class="level easy">초급</div>
-
-카페벙<br>
-AM 09:00
-
-</a>
 </div>
 
-</div>
+<!-- 7~12월 -->
+<div class="month"><div class="month-title">7월</div><div class="calendar">
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+<div class="day"><div class="date">3</div></div>
+<div class="day"><div class="date sat">4</div></div>
+<div class="day"><div class="date sun">5</div></div>
+</div></div>
 
-</div>
+<div class="month"><div class="month-title">8월</div><div class="calendar">
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+<div class="day"><div class="date">3</div></div>
+<div class="day"><div class="date">4</div></div>
+<div class="day"><div class="date">5</div></div>
+</div></div>
+
+<div class="month"><div class="month-title">9월</div><div class="calendar">
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+<div class="day"><div class="date">3</div></div>
+<div class="day"><div class="date">4</div></div>
+<div class="day"><div class="date sat">5</div></div>
+</div></div>
+
+<div class="month"><div class="month-title">10월</div><div class="calendar">
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+<div class="day"><div class="date sat">3</div></div>
+<div class="day"><div class="date sun">4</div></div>
+</div></div>
+
+<div class="month"><div class="month-title">11월</div><div class="calendar">
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+<div class="day"><div class="date">3</div></div>
+<div class="day"><div class="date">4</div></div>
+</div></div>
+
+<div class="month"><div class="month-title">12월</div><div class="calendar">
+<div class="day"><div class="date">1</div></div>
+<div class="day"><div class="date">2</div></div>
+<div class="day"><div class="date">3</div></div>
+<div class="day"><div class="date">4</div></div>
+<div class="day"><div class="date">5</div></div>
+</div></div>
 
 </body>
 </html>
+```
