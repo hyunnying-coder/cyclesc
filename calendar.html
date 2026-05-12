@@ -9,6 +9,18 @@ RIDER S.H
 
 <style>
 
+.weekday{
+  text-align:center;
+  font-weight:bold;
+  padding:10px;
+  color:#9ca3af;
+  font-size:14px;
+}
+
+.empty{
+  visibility:hidden;
+}
+  
 *{
   box-sizing:border-box;
 }
@@ -153,7 +165,17 @@ body{
 @media(max-width:900px){
 
 .calendar{
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.day{
+  min-height:80px;
+  padding:5px;
+}
+
+.date{
+  font-size:14px;
 }
 
 }
@@ -180,25 +202,51 @@ body{
 
 <div class="calendar">
 
+<div class="weekday">월</div>
+<div class="weekday">화</div>
+<div class="weekday">수</div>
+<div class="weekday">목</div>
+<div class="weekday">금</div>
+<div class="weekday sat">토</div>
+<div class="weekday sun">일</div>
+  
+<div class="empty"></div>
+<div class="empty"></div>
+<div class="empty"></div>
+
 <div class="day"><div class="date">1</div></div>
 <div class="day"><div class="date">2</div></div>
-<div class="day"><div class="date">3</div></div>
-<div class="day"><div class="date">4</div></div>
+
+<div class="day">
+<div class="date sat">3</div>
+</div>
+
+<div class="day">
+<div class="date sun">4</div>
+</div>
+
 <div class="day"><div class="date">5</div></div>
 <div class="day"><div class="date">6</div></div>
 <div class="day"><div class="date">7</div></div>
 <div class="day"><div class="date">8</div></div>
 <div class="day"><div class="date">9</div></div>
-<div class="day"><div class="date sat">10</div></div>
-<div class="day"><div class="date sun">11</div></div>
+
+<div class="day">
+<div class="date sat">10</div>
+</div>
+
+<div class="day">
+<div class="date sun">11</div>
+</div>
+
 <div class="day"><div class="date">12</div></div>
+
 <div class="day">
 
-<div class="date sat">13</div>
+<div class="date">13</div>
 
 <div class="ride">
-<a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9921?boardtype=L&menuid=37&referrerAllArticles=false
-" target="_blank">
+<a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9921?boardtype=L&menuid=37&referrerAllArticles=false" target="_blank">
 
 <div class="level mid">중급</div>
 
@@ -209,46 +257,45 @@ AM 09:30
 </div>
 
 </div>
+
 <div class="day"><div class="date">14</div></div>
 <div class="day"><div class="date">15</div></div>
+
 <div class="day">
 
-  <div class="date sat">16</div>
+<div class="date sat">16</div>
 
-  <div class="ride">
-    <a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9910?boardtype=L&menuid=37&referrerAllArticles=false"
-       target="_blank">
+<div class="ride">
+<a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9910?boardtype=L&menuid=37&referrerAllArticles=false" target="_blank">
 
-      <div class="level mid">중급</div>
+<div class="level mid">중급</div>
 
-      속초 투어 <br>
-      AM 05:10
+속초 투어 <br>
+AM 05:10
 
-    </a>
-  </div>
-  <div class="ride">
-    <a href="https://naver.me/FiPOymdA"
-       target="_blank">
+</a>
+</div>
 
-      <div class="level mid">중급</div>
+<div class="ride">
+<a href="https://naver.me/FiPOymdA" target="_blank">
 
-      하트남사북 <br>
-      AM 07:00
+<div class="level mid">중급</div>
 
-    </a>
-  </div>
+하트남사북 <br>
+AM 07:00
 
-  <div class="ride">
-    <a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9917?boardtype=L&menuid=37&referrerAllArticles=false"
-       target="_blank">
+</a>
+</div>
 
-      <div class="level mid">중급</div>
+<div class="ride">
+<a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9917?boardtype=L&menuid=37&referrerAllArticles=false" target="_blank">
 
-      분원리 <br>
-      AM 07:00
+<div class="level mid">중급</div>
 
-    </a>
-  </div>
+분원리 <br>
+AM 07:00
+</a>
+</div>
 
 </div>
 <div class="day"><div class="date sun">17</div></div>
