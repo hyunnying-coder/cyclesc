@@ -1,652 +1,297 @@
-🚴SOUL CALENDAR🚴
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
+<title>LARA Schedule</title>
 <style>
+  * {
+    box-sizing: border-box;
+  }
 
-.weekday{
-  text-align:center;
-  font-weight:bold;
-  padding:10px;
-  color:#9ca3af;
-  font-size:20px;
-}
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #111827;
+    color: #f3f4f6;
+    position: relative;
+    overflow-x: hidden;
+  }
 
-.empty{
-  visibility:hidden;
-}
+  /* 기존 배경 이미지 속성 유지 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('watermark.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.35;
+    z-index: -2;
+  }
 
-*{
-  box-sizing:border-box;
-}
+  /* 상단 헤더 */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#111827;
-  color:white;
-  position:relative;
-  overflow-x:hidden;
-}
+  .header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
 
-body::before{
-  content:'';
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  /* 컨테이너 */
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 16px;
+  }
 
-  background-image:url('watermark.png');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-
-  opacity:0.35;
-
-  z-index:-2;
-}
-
-.header{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-
-  background:rgba(17,24,39,0.7);
-
-  backdrop-filter:blur(8px);
-
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-
-.header h1{
-  margin:0;
-  font-size:24px;
-}
-
-.back-btn{
-  background:#2563eb;
-  color:white;
-  padding:10px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-.month{
-  padding:20px;
-}
-
-.month-title{
-  font-size:28px;
-  font-weight:bold;
-  margin-bottom:15px;
-}
-
-.calendar{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  grid-auto-rows:170px;
-  gap:10px;
-}
-
-.day{
-  height:170px;
-  overflow:hidden;
-}
-
-
-.day{
-  background:rgba(31,41,55,0.40);
-  border-radius:22px;
-  height:170px;
-  padding:10px;
-  backdrop-filter:blur(8px);
-  box-shadow:0 6px 18px rgba(0,0,0,0.28);
-  transition:0.2s;
-}
-
-.day:hover{
-  transform:translateY(-3px);
-}
-
-.date{
-  font-size:18px;
-  font-weight:bold;
-  margin-bottom:10px;
-}
-
-.sun{
-  color:#ff6b6b;
-}
-
-.sat{
-  color:#60a5fa;
-}
-
-.today{
-  border:2px solid #22c55e;
-}
-
-.ride{
-
-  border-radius:18px;
-
-  padding:10px;
-
-  margin-bottom:8px;
-
-  font-size:13px;
-
-  transition:0.2s;
-}
-
-.ride:hover{
-  transform:scale(1.03);
-}
-
-.ride a{
-  color:white;
-  text-decoration:none;
-
-  display:flex;
-  flex-direction:column;
-
-  gap:6px;
-}
-
-/* 난이도 원형 */
-.level{
-
-  width:56px;
-  height:56px;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:13px;
-  font-weight:900;
-
-  color:white;
-
-  margin-bottom:6px;
-}
-
-/* 초급 = 초록 */
-.easy{background:#16a34a;}
-
-/* 중급 = 파랑 */
-.mid{background:#2563eb;}
-
-/* 상급 = 빨강 */
-.hard{background:#dc2626;}
-
-/* 카드 전체 색 */
-
-.ride:has(.easy){background:#166534;}
-
-.ride:has(.mid){background:#1d4ed8;}
-
-.ride:has(.hard){background:#991b1b;}
+  /* 날짜 헤더 */
+  .date-group {
+    margin-top: 24px;
+  }
   
-@media(max-width:900px){
+  .date-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-.calendar{
-  grid-template-columns:repeat(7,1fr);
-  grid-auto-rows:110px;
-  gap:5px;
-}
+  .date-title .badge {
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: normal;
+  }
 
-.day{
-  height:110px;
-  padding:4px;
-  overflow:hidden;
-}
+  /* 요일별 색상 배지 */
+  .badge.today { background: #10b981; color: white; }
+  .badge.sun { background: #ef4444; color: white; }
+  .badge.sat { background: #3b82f6; color: white; }
+  .badge.weekday { background: #6b7280; color: white; }
 
-}
-  
-.date{font-size:14px;}
-  
-.level{
-width:40px;
-height:40px;
-font-size:10px;
+  /* 라이딩 카드 리스트 박스 */
+  .ride-list {
+    background: rgba(31, 41, 55, 0.45);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
 
-}
+  /* 각각의 라이딩 아이템 */
+  .ride-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+  }
 
-}
+  .ride-item:last-child {
+    border-bottom: none;
+  }
 
+  .ride-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* 아이콘 구역 (번개 등) */
+  .ride-icon {
+    margin-right: 12px;
+    margin-top: 2px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+  }
+
+  /* 번개 색상구분 (필요시 사용) */
+  .icon-thunder { color: #f59e0b; } 
+
+  /* 본문 컨텐츠 구역 */
+  .ride-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* 제목 행 */
+  .ride-title {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+    color: #f9fafb;
+  }
+
+  /* 작성자 및 인원 수 행 */
+  .ride-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #9ca3af;
+    margin-top: 2px;
+  }
+
+  .author {
+    color: #9ca3af;
+  }
+
+  .count {
+    color: #f43f5e; /* 이미지의 분홍/빨강 숫자 반영 */
+    font-weight: bold;
+  }
 </style>
 </head>
-
 <body>
 
-<!-- 5월 -->
-<div class="month">
-
-<div class="month-title">5월</div>
-
-<div class="calendar">
-
-<div class="weekday">월</div>
-<div class="weekday">화</div>
-<div class="weekday">수</div>
-<div class="weekday">목</div>
-<div class="weekday">금</div>
-<div class="weekday sat">토</div>
-<div class="weekday sun">일</div>
-
-<!-- 5월 1일 = 금요일 -->
-<div class="empty"></div>
-<div class="empty"></div>
-<div class="empty"></div>
-<div class="empty"></div>
-
-<div class="day">
-<div class="date">1</div>
+<div class="header">
+  <h1>🚲 LARA Schedule</h1>
 </div>
 
-<div class="day">
-<div class="date sat">2</div>
-</div>
-
-<div class="day">
-<div class="date sun">3</div>
-</div>
-
-<div class="day"><div class="date">4</div></div>
-<div class="day"><div class="date">5</div></div>
-<div class="day"><div class="date">6</div></div>
-<div class="day"><div class="date">7</div></div>
-<div class="day"><div class="date">8</div></div>
-
-<div class="day">
-<div class="date sat">9</div>
-</div>
-
-<div class="day">
-<div class="date sun">10</div>
-</div>
-
-<div class="day"><div class="date">11</div></div>
-<div class="day"><div class="date">12</div></div>
-
-<div class="day">
-
-<div class="date">13</div>
-
-<div class="ride">
-<a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9921?boardtype=L&menuid=37&referrerAllArticles=false" target="_blank">
-
-<div class="level mid">중급</div>
-
-전곡항 <br>
-AM 09:30
-
-</a>
-</div>
-
-</div>
-
-<div class="day"><div class="date">14</div></div>
-<div class="day"><div class="date">15</div></div>
-
-<div class="day">
-
-<div class="date sat">16</div>
-
-<div class="ride">
-<a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9910?boardtype=L&menuid=37&referrerAllArticles=false" target="_blank">
-
-<div class="level mid">중급</div>
-
-속초 투어 <br>
-AM 05:10
-
-</a>
-</div>
-
-<div class="ride">
-<a href="https://naver.me/FiPOymdA" target="_blank">
-
-<div class="level mid">중급</div>
-
-하트남사북 <br>
-AM 07:00
-
-</a>
-</div>
-
-<div class="ride">
-<a href="https://cafe.naver.com/f-e/cafes/29677082/articles/9917?boardtype=L&menuid=37&referrerAllArticles=false" target="_blank">
-
-<div class="level mid">중급</div>
-
-분원리 <br>
-AM 07:00
-
-</a>
-</div>
-
-</div>
-
-<div class="day">
-<div class="date sun">17</div>
-</div>
-
-<div class="day"><div class="date">18</div></div>
-<div class="day">
-
-<div class="date">19</div>
-
-<div class="ride">
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9969?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5NjksImlzc3VlZEF0IjoxNzc5MTE1NzI3MzY0LCJjYWZlSWQiOjI5Njc3MDgyfQ.mmr92clNedVoUuzFuC2km4x0ua1_-gCYAzB40Fh9Sk4&useCafeId=false&tc" target="_blank">
-
-<div class="level mid">중급</div>
-
-<br>시화나래휴게소
-PM 19:30
-
-</a>
-</div>
-
-</div>
-
-<div class="day"><div class="date">20</div></div>
-<div class="day">
-
-<div class="date">21</div>
-
-<div class="ride">
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9966?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5NjYsImlzc3VlZEF0IjoxNzc5MTE1NzAyOTE0LCJjYWZlSWQiOjI5Njc3MDgyfQ.dSmDAMm-G0Bz8wmfuaskvzBG5GB0jVwT4meVjVOnX1w&useCafeId=false&tc" target="_blank">
-
-<div class="level hard">상급</div>
-
-전곡항<br>
-PM 19:40
-
-</a>
-</div>
-
-</div>
-<div class="day"><div class="date">22</div></div>
-
-<div class="day"><div class="date sat">23</div>
-
-  <div class="ride">
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9998?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5OTgsImlzc3VlZEF0IjoxNzc5NDYyMTE5OTk1LCJjYWZlSWQiOjI5Njc3MDgyfQ.F93QCHbaH3i1O8pg3Pi-k2zVqUsM_ncWrnjTHRaxIgU&useCafeId=false&tc" target="_blank">
-<div class="level mid">중급</div>
-춘천 <br>
-AM 06:00
-</a>
-</div>
-  
-<div class="ride">
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9993?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5OTMsImlzc3VlZEF0IjoxNzc5Mzc5OTc4OTAxLCJjYWZlSWQiOjI5Njc3MDgyfQ.zS1CUEeutv-yePhur_-hOveSCZzn1ue7gEdLuqKvih4&useCafeId=false&tc" target="_blank">
-<div class="level mid">중급</div>
-강화도 <br>
-AM 06:30
-</a>
-</div>
-
-<div class="ride">
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9982?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5ODIsImlzc3VlZEF0IjoxNzc5MzgwMDA2NDU4LCJjYWZlSWQiOjI5Njc3MDgyfQ.wPWkzdm6Gbhw94j0k_WoF873z1ClQzB9--tAYC_sKQc&useCafeId=false&tc" target="_blank">
-<div class="level hard">상급</div>
-우신사 <br>
-AM 08:00
-</a>
-</div>
-
-<div class="ride">
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9984?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5ODQsImlzc3VlZEF0IjoxNzc5MzgwMDE2MDg2LCJjYWZlSWQiOjI5Njc3MDgyfQ.PXwB3j0BKeVEaOrtLfEcuwQb_Nyx-CXAKvmHmUU-F4A&useCafeId=false&tc" target="_blank">
-<div class="level mid">중급</div>
-시금치 <br>
-AM 07:30
-</a>
-</div>
-  
-</div>
-
-<div class="day"><div class="date sun">24</div>
-<div class="ride">
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9997?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5OTcsImlzc3VlZEF0IjoxNzc5NDYyMDk2OTIwLCJjYWZlSWQiOjI5Njc3MDgyfQ.dmO__SJA4u2rVxj6OuFfL6kE-CY9LcbCRxutKzJHTug&useCafeId=false&tc" target="_blank">
-<div class="level mid">중급</div>
-여주보 <br>
-AM 07:00
-</a>
-</div>
-
-</div>
-
-
-
-<div class="day">
-<div class="date">25</div>
-<div class="ride">
-<a 
-href="https://naver.me/5T0Qpo43" target="_blank">
-<div class="level mid">중급</div>
-청풍호 <br>
-AM 08:00
-
-</a>
-</div>
-
-
-<div class="ride">
-<a href="https://naver.me/xONdR51Y"
-target="_blank">
-<div class="level mid">중급</div>
-콩국수 <br>
-AM 08:00
-
-</a>
-</div>
-
-<div class="ride">
-<a href="https://naver.me/FYrqiRLY"
-target="_blank">
-<div class="level easy">초급</div>
-TT <br>
-PM 19:30
-
-</a>
-</div>
-</div>
-
-<div class="day"><div class="date">26</div></div>
-
-<div class="day">
-<div class="date">27</div>
-<div class="ride">
-<a href="https://naver.me/xlllo415"
-target="_blank">
-<div class="level mid"> 중급
-</div>
-도신사 <br>
-PM 19:30
-
-</a>
-</div>
-
-<div class="ride">
-<a href="https://naver.me/xsZZxOtn"
-target="_blank">
-<div class="level mid"> 중급
-</div>
-신마사고 <br>
-PM 19:30
-
-</a>
-</div>
-
-
-</div>
-
-<div class="day"><div class="date">28</div></div>
-<div class="day"><div class="date">29</div></div>
-
-<div class="day"><div class="date sat">30</div>
-
-<div class="ride">
-
-<a href="https://m.cafe.naver.com/ca-fe/web/cafes/soulriding365/articles/9999?art=aW50ZXJuYWwtY2FmZS1hcnRpY2xlLXJlYWQtc2hhcmUtbGluaw.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYWZlVHlwZSI6IkNBRkVfSUQiLCJhcnRpY2xlSWQiOjk5OTksImlzc3VlZEF0IjoxNzc5NDYyMTM0OTA5LCJjYWZlSWQiOjI5Njc3MDgyfQ.GfD0PcwYO-E31M2VVLyI9f5WNJe5ai0R8deQsGplxv4&useCafeId=false&tc" target="_blank">
-<div class="level mid">중급</div>
-임진각 <br>
-AM 07:00
-</a>
-</div>
-
-<div class="ride">
-<a href="https://naver.me/GgUUUpR8"
-target="_blank">
-<div class="level hard"> 상급
-</div>
-큰궁평 <br>
-AM 07:30
-
-</a>
-</div>
-
-<div class="ride">
-<a href="https://naver.me/FoXXXnkw"
-target="_blank">
-<div class="level mid"> 중급
-</div>
-큰궁평 <br>
-AM 08:00
-
-</a>
-</div>
-
-<div class="ride">
-<a href="https://naver.me/5bCCCL9C"
-target="_blank">
-<div class="level mid"> 중급
-</div>
-파주 <br>
-AM 09:00
-
-</a>
-</div>
-  
-</div>
-
-
-
-<div class="day">
-<div class="date sun">31</div>
-
-
-<div class="ride">
-<a 
-href="https://naver.me/xCjjbQtv" target="_blank">
-<div class="level mid">중급</div>
-궁전시<br>
-AM 06:30
-
-</a>
-</div>
-
-<div class="ride">
-<a 
-href="https://naver.me/FRoo9n30" target="_blank">
-<div class="level easy">초급</div>
-오메 <br>
-AM 11:00
-
-</a>
-</div>
-
-<div class="ride">
-<a 
-href="https://naver.me/F3EEJjnh" target="_blank">
-<div class="level mid">중급</div>
-화성60 <br>
-AM 07:00
-
-</a>
-</div>
-
-<div class="ride">
-<a 
-href="https://naver.me/5ajjlTEP" target="_blank">
-<div class="level mid">중급</div>
-화성6070 <br>
-AM 07:30
-
-</a>
-</div>
-
-</div>
-
-
-
-
-<!-- 6월 -->
-<div class="month">
-
-  <div class="month-title">6월</div>
-
-  <div class="calendar">
-
-    <!-- 요일 추가 -->
-    <div class="weekday">월</div>
-    <div class="weekday">화</div>
-    <div class="weekday">수</div>
-    <div class="weekday">목</div>
-    <div class="weekday">금</div>
-    <div class="weekday sat">토</div>
-    <div class="weekday sun">일</div>
-
-    <!-- 날짜 -->
-    <div class="day"><div class="date">1</div></div>
-    <div class="day"><div class="date">2</div></div>
-    <div class="day"><div class="date">3</div></div>
-    <div class="day"><div class="date">4</div></div>
-    <div class="day"><div class="date">5</div></div>
-    <div class="day"><div class="date sat">6</div></div>
-    <div class="day"><div class="date sun">7</div></div>
-    <div class="day"><div class="date">8</div></div>
-    <div class="day"><div class="date">9</div></div>
-    <div class="day"><div class="date">10</div></div>
-    <div class="day"><div class="date">11</div></div>
-    <div class="day"><div class="date">12</div></div>
-    <div class="day"><div class="date sat">13</div></div>
-    <div class="day"><div class="date sun">14</div></div>
-    <div class="day"><div class="date">15</div></div>
-    <div class="day"><div class="date">16</div></div>
-    <div class="day"><div class="date">17</div></div>
-    <div class="day"><div class="date">18</div></div>
-    <div class="day"><div class="date">19</div></div>
-    <div class="day"><div class="date sat">20</div></div>
-    <div class="day"><div class="date sun">21</div></div>
-    <div class="day"><div class="date">22</div></div>
-    <div class="day"><div class="date">23</div></div>
-    <div class="day"><div class="date">24</div></div>
-    <div class="day"><div class="date">25</div></div>
-    <div class="day"><div class="date">26</div></div>
-    <div class="day"><div class="date sat">27</div></div>
-    <div class="day"><div class="date sun">28</div></div>
-    <div class="day"><div class="date">29</div></div>
-    <div class="day"><div class="date">30</div></div>
-
-    
-
+<div class="container">
+
+  <div class="date-group">
+    <div class="date-title">
+      5월 31일 <span class="badge today">오늘</span>
     </div>
+    
+    <div class="ride-list">
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-info">
+          <div class="ride-title">[30~33] 5/31(일) 7:30 태읍 👍팔당찍턴 👍면포도궁 사라다빵 X 성남이다 두초빙</div>
+          <div class="ride-meta">
+            <span class="author">없템포 김민수</span>
+            <span class="count">53</span>
+          </div>
+        </div>
+      </a>
 
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-info">
+          <div class="ride-title">[31-36]5/31(일) 0530 방아교서편, 양청달하 리커버리^^</div>
+          <div class="ride-meta">
+            <span class="author">골드백 금백철</span>
+            <span class="count">14</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-info">
+          <div class="ride-title">[28-33] 5/31(일) 7:30 남북 클래식 (테라스 카페 브리즈서울 한남)</div>
+          <div class="ride-meta">
+            <span class="author">루나 김주식</span>
+            <span class="count">22</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-info">
+          <div class="ride-title">[28-33] 5. 31(일), 07:30 '웰빙병의 달인' 캡틴의 포도송이 LSD!</div>
+          <div class="ride-meta">
+            <span class="author">캡틴 안영찬</span>
+            <span class="count">87</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-info">
+          <div class="ride-title">[초급] 5/31(일) 오전 7시반 태읍, 시우리 딸기쥬스 재방문 / 천호동 서초면옥 냉면</div>
+          <div class="ride-meta">
+            <span class="author">여겨아범 김중현</span>
+            <span class="count">27</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="date-group">
+    <div class="date-title">
+      6월 1일 <span class="badge weekday">월</span>
+    </div>
+    
+    <div class="ride-list">
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon">🚴</div>
+        <div class="ride-info">
+          <div class="ride-title">[30-35]6/1(월) 06:00 방아-상암 통근버스</div>
+          <div class="ride-meta">
+            <span class="author">구름빵 배원준</span>
+            <span class="count">8</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon">🚴</div>
+        <div class="ride-info">
+          <div class="ride-title">[33-38]6/1(월) 옷걸이 S/M 새라</div>
+          <div class="ride-meta">
+            <span class="author">영통 황정민</span>
+            <span class="count">12</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="date-group">
+    <div class="date-title">
+      6월 2일 <span class="badge weekday">화</span>
+    </div>
+    
+    <div class="ride-list">
+      <a href="링크주소" class="ride-item">
+        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-info">
+          <div class="ride-title">[38+]6/2(화) AM0530 탄합, 엉팔멧</div>
+          <div class="ride-meta">
+            <span class="author">만두 전민준</span>
+            <span class="count">6</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
 
 </body>
 </html>
