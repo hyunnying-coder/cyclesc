@@ -95,7 +95,13 @@ body::before{
 .calendar{
   display:grid;
   grid-template-columns:repeat(7,1fr);
+  grid-auto-rows:170px;
   gap:10px;
+}
+
+.day{
+  height:170px;
+  overflow:hidden;
 }
 
 
@@ -107,8 +113,6 @@ body::before{
   backdrop-filter:blur(8px);
   box-shadow:0 6px 18px rgba(0,0,0,0.28);
   transition:0.2s;
-
-  overflow-y:auto;
 }
 
 .day:hover{
@@ -199,12 +203,19 @@ body::before{
   
 @media(max-width:900px){
 
-.calendar{grid-template-columns:repeat(7,1fr);gap:5px;}
-  
+.calendar{
+  grid-template-columns:repeat(7,1fr);
+  grid-auto-rows:110px;
+  gap:5px;
+}
+
 .day{
-min-height:110px;
-padding:6px;
-overflow-y:auto;}
+  height:110px;
+  padding:4px;
+  overflow:hidden;
+}
+
+}
   
 .date{font-size:14px;}
   
