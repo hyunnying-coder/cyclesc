@@ -35,23 +35,21 @@
     z-index: -2;
   }
 
-  /* 상단 헤더 */
+  /* 상단 헤더: 배경 음영 및 테두리 제거 */
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    background: rgba(17, 24, 39, 0.8);
-    backdrop-filter: blur(10px);
+    padding: 20px 16px 10px 16px; /* 아래 여백 조절 */
+    background: transparent; /* 음영 제거 */
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .header h1 {
     margin: 0;
-    font-size: 20px;
+    font-size: 24px; /* 기존 코드의 시원한 크기 반영 */
     font-weight: 800;
     letter-spacing: -0.5px;
   }
@@ -119,7 +117,7 @@
     background: rgba(255, 255, 255, 0.03);
   }
 
-  /* 아이콘 구역 (번개 등) */
+  /* 난이도별 번개 아이콘 설정 */
   .ride-icon {
     margin-right: 12px;
     margin-top: 2px;
@@ -130,8 +128,10 @@
     width: 24px;
   }
 
-  /* 번개 색상구분 (필요시 사용) */
-  .icon-thunder { color: #f59e0b; } 
+  /* 난이도 색상 클래스 추가 */
+  .ride-icon.easy { color: #22c55e; } /* 초급 = 초록색 */
+  .ride-icon.mid  { color: #3b82f6; } /* 중급 = 파란색 */
+  .ride-icon.hard { color: #ef4444; } /* 상급 = 빨간색 */
 
   /* 본문 컨텐츠 구역 */
   .ride-info {
@@ -164,27 +164,30 @@
   }
 
   .count {
-    color: #f43f5e; /* 이미지의 분홍/빨강 숫자 반영 */
+    color: #f43f5e;
     font-weight: bold;
   }
 </style>
 </head>
 <body>
 
+<!-- 타이틀 구역 배경 투명화 완료 -->
 <div class="header">
-  <h1>🚲 LARA Schedule</h1>
+  <h1>🚴 SOUL CALENDAR</h1>
 </div>
 
 <div class="container">
 
+  <!-- ================= 5월 31일 (일) ================= -->
   <div class="date-group">
     <div class="date-title">
       5월 31일 <span class="badge today">오늘</span>
     </div>
     
     <div class="ride-list">
+      <!-- 중급 (mid) 예시 -->
       <a href="링크주소" class="ride-item">
-        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-icon mid">⚡</div>
         <div class="ride-info">
           <div class="ride-title">[30~33] 5/31(일) 7:30 태읍 👍팔당찍턴 👍면포도궁 사라다빵 X 성남이다 두초빙</div>
           <div class="ride-meta">
@@ -194,41 +197,9 @@
         </div>
       </a>
 
+      <!-- 초급 (easy) 예시 -->
       <a href="링크주소" class="ride-item">
-        <div class="ride-icon icon-thunder">⚡</div>
-        <div class="ride-info">
-          <div class="ride-title">[31-36]5/31(일) 0530 방아교서편, 양청달하 리커버리^^</div>
-          <div class="ride-meta">
-            <span class="author">골드백 금백철</span>
-            <span class="count">14</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="링크주소" class="ride-item">
-        <div class="ride-icon icon-thunder">⚡</div>
-        <div class="ride-info">
-          <div class="ride-title">[28-33] 5/31(일) 7:30 남북 클래식 (테라스 카페 브리즈서울 한남)</div>
-          <div class="ride-meta">
-            <span class="author">루나 김주식</span>
-            <span class="count">22</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="링크주소" class="ride-item">
-        <div class="ride-icon icon-thunder">⚡</div>
-        <div class="ride-info">
-          <div class="ride-title">[28-33] 5. 31(일), 07:30 '웰빙병의 달인' 캡틴의 포도송이 LSD!</div>
-          <div class="ride-meta">
-            <span class="author">캡틴 안영찬</span>
-            <span class="count">87</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="링크주소" class="ride-item">
-        <div class="ride-icon icon-thunder">⚡</div>
+        <div class="ride-icon easy">⚡</div>
         <div class="ride-info">
           <div class="ride-title">[초급] 5/31(일) 오전 7시반 태읍, 시우리 딸기쥬스 재방문 / 천호동 서초면옥 냉면</div>
           <div class="ride-meta">
@@ -241,50 +212,21 @@
   </div>
 
 
+  <!-- ================= 6월 1일 (월) ================= -->
   <div class="date-group">
     <div class="date-title">
       6월 1일 <span class="badge weekday">월</span>
     </div>
     
     <div class="ride-list">
+      <!-- 상급 (hard) 예시 -->
       <a href="링크주소" class="ride-item">
-        <div class="ride-icon">🚴</div>
+        <div class="ride-icon hard">⚡</div>
         <div class="ride-info">
-          <div class="ride-title">[30-35]6/1(월) 06:00 방아-상암 통근버스</div>
+          <div class="ride-title">[35-45+] 6.1(월), 19:30 / 캡틴의 운동방 공크 X 4</div>
           <div class="ride-meta">
-            <span class="author">구름빵 배원준</span>
-            <span class="count">8</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="링크주소" class="ride-item">
-        <div class="ride-icon">🚴</div>
-        <div class="ride-info">
-          <div class="ride-title">[33-38]6/1(월) 옷걸이 S/M 새라</div>
-          <div class="ride-meta">
-            <span class="author">영통 황정민</span>
-            <span class="count">12</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-
-  <div class="date-group">
-    <div class="date-title">
-      6월 2일 <span class="badge weekday">화</span>
-    </div>
-    
-    <div class="ride-list">
-      <a href="링크주소" class="ride-item">
-        <div class="ride-icon icon-thunder">⚡</div>
-        <div class="ride-info">
-          <div class="ride-title">[38+]6/2(화) AM0530 탄합, 엉팔멧</div>
-          <div class="ride-meta">
-            <span class="author">만두 전민준</span>
-            <span class="count">6</span>
+            <span class="author">캡틴 안영찬</span>
+            <span class="count">56</span>
           </div>
         </div>
       </a>
