@@ -76,6 +76,7 @@
   /* 날짜 그룹 */
   .date-group {
     margin-bottom: 20px;
+    scroll-margin-top: 80px; /* 자동 스크롤 시 헤더에 가려지지 않게 여백 설정 */
   }
   
   .date-title {
@@ -96,7 +97,7 @@
   }
 
   /* 요일별 색상 배지 */
-  .badge.today { background: #22c55e; color: white; }
+  .badge.today { background: #22c55e !important; color: white !important; } /* 오늘 날짜 강제 강조 */
   .badge.sun { background: #ef4444; color: white; }
   .badge.sat { background: #3b82f6; color: white; }
   .badge.weekday { background: #4b5563; color: white; }
@@ -207,7 +208,7 @@
 
   <div class="month-section-title">6월</div>
 
-<div class="date-group">
+<div class="date-group" data-date="6-1">
 <div class="date-title">6월 1일 <span class="badge weekday">월</span></div>
 <div class="ride-list">
 
@@ -228,7 +229,7 @@
 
 
 
-<div class="date-group">
+<div class="date-group" data-date="6-2">
 <div class="date-title">6월 2일 <span class="badge weekday">화</span></div>
 <div class="ride-list">
 
@@ -256,7 +257,7 @@
 
 
 
-<div class="date-group">
+<div class="date-group" data-date="6-3">
 <div class="date-title">6월 3일 <span class="badge weekday">수</span></div>
 <div class="ride-list">
 
@@ -309,7 +310,7 @@
 </div>
 
 
-<div class="date-group">
+<div class="date-group" data-date="6-4">
 <div class="date-title">6월 4일 <span class="badge weekday">목</span></div>
 <div class="ride-list">
 
@@ -326,7 +327,7 @@
 
 
 
-<div class="date-group">
+<div class="date-group" data-date="6-6">
 <div class="date-title">6월 6일 <span class="badge sat">토</span></div>
 <div class="ride-list">
 
@@ -367,7 +368,7 @@
 </div>
 
 
-<div class="date-group">
+<div class="date-group" data-date="6-7">
 <div class="date-title">6월 7일 <span class="badge sun">일</span></div>
 <div class="ride-list">
 
@@ -406,7 +407,7 @@
 </div>
 </div>
 
-<div class="date-group">
+<div class="date-group" data-date="6-8">
 <div class="date-title">6월 8일 <span class="badge weekday">월</span></div>
 <div class="ride-list">
 
@@ -421,7 +422,7 @@
 </div>
 </div>
 
-<div class="date-group">
+<div class="date-group" data-date="6-9">
 <div class="date-title">6월 9일 <span class="badge weekday">화</span></div>
 <div class="ride-list">
 
@@ -438,7 +439,7 @@ href="https://naver.me/5yhYGofR" target="_blank" class="ride-item">
 </div>
 </div>
 
-<div class="date-group">
+<div class="date-group" data-date="6-10">
 <div class="date-title">6월 10일 <span class="badge weekday">수</span></div>
 <div class="ride-list">
 
@@ -455,7 +456,7 @@ href="https://naver.me/5IfCq9oM" target="_blank" class="ride-item">
 </div>
 </div>
 
-<div class="date-group">
+<div class="date-group" data-date="6-13">
 <div class="date-title">6월 13일 <span class="badge sat">토</span></div>
 <div class="ride-list">
 
@@ -482,7 +483,7 @@ href="https://naver.me/FKGTGcCK" target="_blank" class="ride-item">
 </div>
 </div>
 
-<div class="date-group">
+<div class="date-group" data-date="6-14">
 <div class="date-title">6월 14일 <span class="badge sun">일</span></div>
 <div class="ride-list">
 
@@ -501,6 +502,37 @@ href="https://naver.me/5B0B4Mhk" target="_blank" class="ride-item">
 </div>
 
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 1. 현재 오늘 날짜 구하기
+    const today = new Date();
+    const currentMonth = today.getMonth() + 1; // 월 (1~12)
+    const currentDate = today.getDate();       // 일 (1~31)
+
+    // 식별용 포맷 생성 (예: "6-8")
+    const todayFormat = `${currentMonth}-${currentDate}`;
+
+    // 2. HTML 내에서 해당 날짜를 가진 그룹 찾기
+    const todayTarget = document.querySelector(`.date-group[data-date="${todayFormat}"]`);
+
+    if (todayTarget) {
+      // 3. 해당 날짜의 요일 배지 요소를 선택
+      const badge = todayTarget.querySelector('.date-title .badge');
+      if (badge) {
+        // 기존 텍스트(예: "월") 앞에 "오늘 " 추가하여 "오늘 월" 로 변경
+        badge.innerText = `오늘 ${badge.innerText}`;
+        // CSS 클래스를 'today'로 교체하여 초록색으로 변경
+        badge.className = 'badge today';
+      }
+
+      // 4. 오늘 날짜 위치로 부드럽게 화면 스크롤 이동
+      setTimeout(() => {
+        todayTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300); 
+    }
+  });
+</script>
 
 </body>
 </html>
