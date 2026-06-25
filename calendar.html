@@ -17,27 +17,22 @@
     overflow-x: hidden;
   }
 
-  /* 기존 배경 이미지 속성 유지 */
-
   body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('watermark.png');
+    background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.85;
+    z-index: -2;
+  }
 
-  background-image: url('watermark.png');
-  background-size: contain; 
-  background-position: center;
-  background-repeat: no-repeat;
-
-  opacity: 0.85;
-  z-index: -2;
-}
-
-
-  /* 상단 헤더: 배경 음영 제거 */
+  /* 상단 헤더 */
   .header {
     display: flex;
     justify-content: space-between;
@@ -54,6 +49,41 @@
     font-size: 24px;
     font-weight: 800;
     letter-spacing: -0.5px;
+  }
+
+  /* 우측 링크들을 감싸는 컨테이너 추가 (정렬용) */
+  .header-links {
+    display: flex;
+    gap: 8px; /* 버튼 사이의 간격 */
+    align-items: center;
+  }
+
+  /* 공통 링크 스타일 */
+  .top-right-link {
+    font-size: 12px;
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: 0.2s;
+  }
+
+  .top-right-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* ★ 이벤트 버튼 전용 스타일 추가 (하늘색 배경, 검은색 글씨) */
+  .top-right-link.event-link {
+    background: #38bdf8; /* 하늘색 (Tailwind sky-400 컬러 치수) */
+    color: #000000;      /* 검은색 글씨 */
+    font-weight: bold;   /* 가독성을 위해 살짝 두껍게 처리 */
+  }
+
+  .top-right-link.event-link:hover {
+    background: #7dd3fc; /* 호버 시 조금 더 밝은 하늘색 */
+    color: #000000;
   }
 
   /* 컨테이너 */
@@ -76,7 +106,7 @@
   /* 날짜 그룹 */
   .date-group {
     margin-bottom: 20px;
-    scroll-margin-top: 80px; /* 자동 스크롤 시 헤더에 가려지지 않게 여백 설정 */
+    scroll-margin-top: 80px;
   }
   
   .date-title {
@@ -96,8 +126,7 @@
     font-weight: normal;
   }
 
-  /* 요일별 색상 배지 */
-  .badge.today { background: #22c55e !important; color: white !important; } /* 오늘 날짜 강제 강조 */
+  .badge.today { background: #22c55e !important; color: white !important; }
   .badge.sun { background: #ef4444; color: white; }
   .badge.sat { background: #3b82f6; color: white; }
   .badge.weekday { background: #4b5563; color: white; }
@@ -112,7 +141,6 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  /* 각각의 라이딩 아이템 */
   .ride-item {
     display: flex;
     align-items: flex-start;
@@ -131,22 +159,20 @@
     background: rgba(255, 255, 255, 0.03);
   }
 
-  /* 난이도별 동그라미 아이콘 공통 설정 */
   .ride-icon {
     margin-right: 14px;
-    margin-top: 5px; /* 글자 높이와 맞추기 위한 조정 */
+    margin-top: 5px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     flex-shrink: 0;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /* 동그라미 입체감 */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   }
 
-  .ride-icon.easy { background: #22c55e; } /* 초급 = 초록색 동그라미 */
-  .ride-icon.mid  { background: #3b82f6; } /* 중급 = 파란색 동그라미 */
-  .ride-icon.hard { background: #ef4444; } /* 상급 = 빨간색 동그라미 */
+  .ride-icon.easy { background: #22c55e; }
+  .ride-icon.mid  { background: #3b82f6; }
+  .ride-icon.hard { background: #ef4444; }
 
-  /* 본문 컨텐츠 구역 */
   .ride-info {
     flex: 1;
     display: flex;
@@ -154,7 +180,6 @@
     gap: 2px;
   }
 
-  /* 제목 및 시간 */
   .ride-title {
     font-size: 15px;
     font-weight: bold;
@@ -162,7 +187,6 @@
     color: #f9fafb;
   }
 
-  /* 하단 메타 정보 */
   .ride-meta {
     display: flex;
     justify-content: space-between;
@@ -175,162 +199,102 @@
   .author {
     color: #9ca3af;
   }
-
-
-/*여기에 추가된 자전거용품 스타일 코드*/
-.top-right-link {
-  font-size: 12px;
-  color: #9ca3af;
-  text-decoration: none;
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  transition: 0.2s;
-}
-
-.top-right-link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.15);}
-/*여기까지*/
-
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>🚴 SOUL CALENDAR</h1>
-  <a href="https://m.smartstore.naver.com/hayshop?NaPm=ct%3Dmptafsiz%7Cci%3Dcheckout%7Ctr%3Dds%7Ctrx%3Dnull%7Chk%3D46e15df91a7ceb6f78f45fe960341ddfca40936e" target="_blank" class="top-right-link">자전거용품</a>
+  <div class="header-links">
+    <a href="https://naver.me/5K6wtMrp" target="_blank" class="top-right-link event-link">이벤트</a>
+    <a href="https://m.smartstore.naver.com/hayshop?NaPm=ct%3Dmptafsiz%7Cci%3Dcheckout%7Ctr%3Dds%7Ctrx%3Dnull%7Chk%3D46e15df91a7ceb6f78f45fe960341ddfca40936e" target="_blank" class="top-right-link">자전거용품</a>
+  </div>
 </div>
-
 
 <div class="container">
+  <div class="month-section-title">6월</div>
+  <div class="date-group" data-date="6-26">
+    <div class="date-title">6월 26일 <span class="badge weekday">금</span></div>
+    <div class="ride-list">
+      <a href="https://naver.me/5T0z23qb" target="_blank" class="ride-item">
+        <div class="ride-icon mid"></div>
+        <div class="ride-info">
+          <div class="ride-title">랜덤(AM05:00)</div>
+          <div class="ride-meta"><span class="author">중급 모임</span></div>
+        </div>
+      </a> 
+    </div>
+  </div>
 
+  <div class="date-group" data-date="6-27">
+    <div class="date-title">6월 27일 <span class="badge sat">토</span></div>
+    <div class="ride-list">
+      <a href="https://naver.me/G0pB9ZGB" target="_blank" class="ride-item">
+        <div class="ride-icon mid"></div>
+        <div class="ride-info">
+          <div class="ride-title">화성90(AM07:00)</div>
+          <div class="ride-meta"><span class="author">중급 모임</span></div>
+        </div>
+      </a> 
+      <a href="https://naver.me/5Qs0LicG" target="_blank" class="ride-item">
+        <div class="ride-icon mid"></div>
+        <div class="ride-info">
+          <div class="ride-title">명시온(AM05:30)</div>
+          <div class="ride-meta"><span class="author">중급 모임</span></div>
+        </div>
+      </a> 
+      <a href="https://naver.me/GkILOEUN" target="_blank" class="ride-item">
+        <div class="ride-icon easy"></div>
+        <div class="ride-info">
+          <div class="ride-title">큰궁LSD(AM07:00)</div>
+          <div class="ride-meta"><span class="author">초급 모임</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
 
-<div class="month-section-title">6월</div>
-
-<div class="date-group" data-date="6-26">
-<div class="date-title">6월 26일 <span class="badge weekday">금</span></div>
-<div class="ride-list">
-
-<a 
-href="https://naver.me/5T0z23qb" target="_blank" class="ride-item">
-<div class="ride-icon mid"></div>
-<div class="ride-info">
-<div class="ride-title">랜덤(AM05:00)</div>
-<div class="ride-meta"><span class="author">중급 모임</span></div>
-
-</div>
-</a> 
-
-</div>
-</div>
-
-<div class="date-group" data-date="6-27">
-<div class="date-title">6월 27일 <span class="badge sat">토</span></div>
-<div class="ride-list">
-
-<a 
-href="https://naver.me/G0pB9ZGB" target="_blank" class="ride-item">
-<div class="ride-icon mid"></div>
-<div class="ride-info">
-<div class="ride-title">화성90(AM07:00)</div>
-<div class="ride-meta"><span class="author">중급 모임</span></div>
-
-</div>
-</a> 
-
-<a 
-href="https://naver.me/5Qs0LicG
-" target="_blank" class="ride-item">
-<div class="ride-icon mid"></div>
-<div class="ride-info">
-<div class="ride-title">명시온(AM05:30)</div>
-<div class="ride-meta"><span class="author">중급 모임</span></div>
-
-
-</div>
-</a> 
-
-<a 
-href="https://naver.me/GkILOEUN" target="_blank" class="ride-item">
-<div class="ride-icon easy"></div>
-<div class="ride-info">
-<div class="ride-title">큰궁LSD(AM07:00)</div>
-<div class="ride-meta"><span class="author">초급 모임</span></div>
-
-</div>
-</a>
-
-</div>
-</div>
-
-
-<div class="date-group" data-date="6-28">
-<div class="date-title">6월 28일 <span class="badge sun">일</span></div>
-<div class="ride-list">
-
-<a 
-href="https://naver.me/GlRWPioT" target="_blank" class="ride-item">
-<div class="ride-icon mid"></div>
-<div class="ride-info">
-<div class="ride-title">missA수지(AM08:00)</div>
-<div class="ride-meta"><span class="author">중급 모임</span></div>
-
-</div>
-</a> 
-
-
-<a 
-href="https://naver.me/xiLxSU0r" target="_blank" class="ride-item">
-<div class="ride-icon mid"></div>
-<div class="ride-info">
-<div class="ride-title">하트(AM06:00)</div>
-<div class="ride-meta"><span class="author">중급 모임</span></div>
-
-</div>
-</a> 
-
-<a 
-href="https://naver.me/5K6wTfVv" target="_blank" class="ride-item">
-<div class="ride-icon mid"></div>
-<div class="ride-info">
-<div class="ride-title">화성70(AM07:00)</div>
-<div class="ride-meta"><span class="author">중급 모임</span></div>
-
-</div>
-</a> 
-</div>
-</div>
-
-
-
-
+  <div class="date-group" data-date="6-28">
+    <div class="date-title">6월 28일 <span class="badge sun">일</span></div>
+    <div class="ride-list">
+      <a href="https://naver.me/GlRWPioT" target="_blank" class="ride-item">
+        <div class="ride-icon mid"></div>
+        <div class="ride-info">
+          <div class="ride-title">missA수지(AM08:00)</div>
+          <div class="ride-meta"><span class="author">중급 모임</span></div>
+        </div>
+      </a> 
+      <a href="https://naver.me/xiLxSU0r" target="_blank" class="ride-item">
+        <div class="ride-icon mid"></div>
+        <div class="ride-info">
+          <div class="ride-title">하트(AM06:00)</div>
+          <div class="ride-meta"><span class="author">중급 모임</span></div>
+        </div>
+      </a> 
+      <a href="https://naver.me/5K6wTfVv" target="_blank" class="ride-item">
+        <div class="ride-icon mid"></div>
+        <div class="ride-info">
+          <div class="ride-title">화성70(AM07:00)</div>
+          <div class="ride-meta"><span class="author">중급 모임</span></div>
+        </div>
+      </a> 
+    </div>
+  </div>
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // 1. 현재 오늘 날짜 구하기
     const today = new Date();
-    const currentMonth = today.getMonth() + 1; // 월 (1~12)
-    const currentDate = today.getDate();       // 일 (1~31)
-
-    // 식별용 포맷 생성 (예: "6-8")
+    const currentMonth = today.getMonth() + 1;
+    const currentDate = today.getDate();
     const todayFormat = `${currentMonth}-${currentDate}`;
-
-    // 2. HTML 내에서 해당 날짜를 가진 그룹 찾기
     const todayTarget = document.querySelector(`.date-group[data-date="${todayFormat}"]`);
 
     if (todayTarget) {
-      // 3. 해당 날짜의 요일 배지 요소를 선택
       const badge = todayTarget.querySelector('.date-title .badge');
       if (badge) {
-        // 기존 텍스트(예: "월") 앞에 "오늘 " 추가하여 "오늘 월" 로 변경
         badge.innerText = `오늘 ${badge.innerText}`;
-        // CSS 클래스를 'today'로 교체하여 초록색으로 변경
         badge.className = 'badge today';
       }
-
-      // 4. 오늘 날짜 위치로 부드럽게 화면 스크롤 이동
       setTimeout(() => {
         todayTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 300); 
